@@ -40,7 +40,9 @@ export class AgregarEditarComentarioComponent implements OnInit {
       })
       .subscribe();
     this.comentarios.reset();
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
   esEditar() {
@@ -61,7 +63,9 @@ export class AgregarEditarComentarioComponent implements OnInit {
       this.apiService
         .updateComentario({ ...this.comentarios.value, id: this.idComentario })
         .subscribe();
-      this.router.navigate(['/']);
+      this.router.navigate(['/']).then(() => {
+        window.location.reload();
+      });
     } else {
       this.guardarComentario();
     }

@@ -21,7 +21,7 @@ export class ListComentariosComponent implements OnInit {
 
   eliminarComentario(id: number) {
     this.apiService.deleteComentario(id).subscribe((data) => {});
-    this.fetchComentarios();
+    window.location.reload();
   }
 
   fetchComentarios() {
