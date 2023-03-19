@@ -19,7 +19,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let comentario of comentarios">
-      <td>{{ comentario.titulo }}</td>
+      <td>
+        <a [href]="'/editar/' + comentario.id">{{ comentario.titulo }}</a>
+      </td>
       <td>{{ comentario.creador }}</td>
       <td>{{ comentario.fechaCreacion }}</td>
       <td>

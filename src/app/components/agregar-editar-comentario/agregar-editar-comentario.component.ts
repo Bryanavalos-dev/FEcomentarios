@@ -44,8 +44,8 @@ export class AgregarEditarComentarioComponent implements OnInit {
   }
 
   esEditar() {
-    this.action = 'Editar';
     if (this.idComentario != 0) {
+      this.action = 'Editar';
       this.apiService.getComentario(this.idComentario).subscribe((data) => {
         this.comentarios.patchValue(data);
       });
