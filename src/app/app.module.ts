@@ -8,6 +8,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ListComentariosComponent } from './components/list-comentarios/list-comentarios.component';
 import { VerComentarioComponent } from './components/ver-comentario/ver-comentario.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ApiServices } from './services/api.services';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,13 @@ import { HttpClientModule } from '@angular/common/http';
     ListComentariosComponent,
     VerComentarioComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
+  providers: [ApiServices],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

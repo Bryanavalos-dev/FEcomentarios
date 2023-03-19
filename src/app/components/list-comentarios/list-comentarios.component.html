@@ -18,13 +18,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr [routerLink]="['/ver/', 1]">
-      <td>Banca Sillicon Valley en apuros</td>
-      <td>Mario</td>
-      <td>18/03/2023</td>
+    <tr *ngFor="let comentario of comentarios">
+      <td>{{ comentario.titulo }}</td>
+      <td>{{ comentario.creador }}</td>
+      <td>{{ comentario.fechaCreacion }}</td>
       <td>
-        <button class="btn btn-primary btn-sm">Editar</button>
-        <button class="btn btn-danger btn-sm">Eliminar</button>
+        <button
+          class="btn btn-primary btn-sm"
+          [routerLink]="'/editar/' + comentario.id"
+        >
+          Editar
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="eliminarComentario(comentario.id ?? 0)"
+        >
+          Eliminar
+        </button>
       </td>
     </tr>
   </tbody>

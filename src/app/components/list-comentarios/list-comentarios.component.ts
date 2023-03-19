@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Comentario } from '../../models/comentarios.model';
+import { ApiServices } from '../../services/api.services';
 
 @Component({
   selector: 'app-list-comentarios',
@@ -10,15 +11,21 @@ import { Comentario } from '../../models/comentarios.model';
 export class ListComentariosComponent implements OnInit {
   comentarios: Comentario[] = [];
 
-  constructor(private http: HttpClient) {}
-  getComentarios(username: string) {
-    const apiUrl = `http://localhost:5051/api/Comentario`;
-    return this.http.get(apiUrl);
-  }
+  constructor(private apiService: ApiServices) {}
 
   ngOnInit(): void {
-    this.getComentarios('username').subscribe((data) => {
-      console.log(data);
+    this.apiService.getComentarios().subscribe((data) => {
+      this.comentarios = data as Comentario[];
+    });
+  }
+
+  eliminarComentario(id: number) {
+    this.apiService.deleteComentario(id).subscribe((data) => {});
+    this.fetchComentarios();
+  }
+
+  fetchComentarios() {
+    this.apiService.getComentarios().subscribe((data) => {
       this.comentarios = data as Comentario[];
     });
   }
